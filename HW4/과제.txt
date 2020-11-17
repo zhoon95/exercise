@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+class Queue
+{
+	
+	int top = 0;
+	int bottom = -1;
+	
+	int queue [] = new int [1024];
+	
+	public void push(int x) 
+	{
+		queue[++bottom] = x;
+	}
+	
+	public int size() 
+	{
+		return bottom - top + 1;
+	}
+	
+	public boolean isValid() 
+	{
+		if (size()==0)
+			return true;
+		else
+			return false;
+	}
+	
+	public int  pop() 
+	{
+		if (isValid())
+			return -1;
+		else
+			return queue[top++];
+	}
+	
+	public int front() 
+	{
+		if (isValid())
+			return -1;
+		else
+			return queue[top];
+	}
+	
+	public int back() 
+	{
+		if (isValid())
+			return -1;
+		else
+			return queue[bottom];
+	}
+	
+}
+public class Que 
+{
+	public static void main(String args[]) 
+	{
+		Scanner scanner = new Scanner(System.in);
+		
+		int number = scanner.nextInt();
+		
+		Queue queue = new Queue();
+		
+		for(int i = 0; i <number; i++) 
+		{
+			String str = scanner.next();
+			
+			switch(str) 
+			{
+				case "push":
+					int x = scanner.nextInt();
+					queue.push(x);
+					break;
+					
+				case "pop":
+					System.out.println(queue.pop());
+					break;
+					
+				case "empty":
+					if (queue.isValid())
+						System.out.println(1);
+					else
+						System.out.println(0);
+					break;
+					
+				case "front":
+					System.out.println(queue.front());
+					break;
+					
+				case "back":
+					System.out.println(queue.back());
+					break;
+					
+				case "size":
+					System.out.println(queue.size());
+					break;
+			}
+		}
+	}
+}
